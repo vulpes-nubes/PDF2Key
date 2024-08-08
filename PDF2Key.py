@@ -1,5 +1,6 @@
 #Coded by Vulpes Nubes, with help from ChatGPT
 #Free to use and fork !!!
+#requires installastion of tkinter, nltk and PyPDF2
 
 import os
 from tkinter import Tk, filedialog #using tkinter lib
