@@ -14,7 +14,7 @@ Windows (in powershell):
 pip install nltk PyPDF2
 
 ---
-# PDF2TXT-OCR equires you to install pymupdf pytesseract pillow tkinter and tesseract-ocr
+# PDF2TXT-OCR requires you to install pymupdf pytesseract pillow tkinter and tesseract-ocr
 
 Linux :
 sudo apt-get install -y python3-tk
@@ -24,3 +24,13 @@ sudo apt-get install tesseract-ocr
 Windows :
 pip install pymupdf pytesseract pillow
 Tesseract : https://github.com/UB-Mannheim/tesseract/wiki
+
+---
+# TXT2Key requires you to install tkinter and nltk
+Linux : 
+sudo apt-get update
+sudo apt-get install -y python3-tk
+sudo python3 pip install nltk
+
+Windows (in powershell):
+pip install nltk
