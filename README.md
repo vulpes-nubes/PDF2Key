@@ -3,7 +3,7 @@ This is a single python script that converts a PDF file into TXT then pulls word
 You are free to use it and fork for more updates
 
 -- 
-PDF2Key requires you to install tkinter, nltk and PyPDF2
+# PDF2Key requires you to install tkinter, nltk and PyPDF2
 
 Linux : 
 sudo apt-get update
@@ -14,7 +14,7 @@ Windows (in powershell):
 pip install nltk PyPDF2
 
 ---
-PDF2TXT-OCR equires you to install pymupdf pytesseract pillow tkinter and tesseract-ocr
+# PDF2TXT-OCR equires you to install pymupdf pytesseract pillow tkinter and tesseract-ocr
 
 Linux :
 sudo apt-get install -y python3-tk
