@@ -1,6 +1,8 @@
-# PDF2Key
-This is a single python script that converts a PDF file into TXT then pulls word frequency and keywords from it
-You are free to use it and fork for more updates
+# PDF2Key, TXT2Key, CSV2BarG and COMBOBREAKER 
+These scripts do the following :
+## PDF2Key : converts a PDF to TXT and extracts the word counts (excluding the file name)
+## TXT2Key : Opens a TXT and extracts the word counts (excluding the file name)
+## CSV2BarG : Opens a CSV created by either PDF2Key or TXT2KEY and pushes out a colourful bar graph of the main (X) words
 
 -- 
 # PDF2Key requires you to install tkinter, nltk and PyPDF2
@@ -8,7 +10,7 @@ You are free to use it and fork for more updates
 Linux : 
 sudo apt-get update
 sudo apt-get install -y python3-tk
-sudo python3 pip install nltk PyPDF2
+sudo pip install nltk PyPDF2
 
 Windows (in powershell):
 pip install nltk PyPDF2
@@ -18,7 +20,7 @@ pip install nltk PyPDF2
 
 Linux :
 sudo apt-get install -y python3-tk
-sudo python3 pip install pymupdf pytesseract pillow
+sudo pip install pymupdf pytesseract pillow
 sudo apt-get install tesseract-ocr
 
 Windows :
@@ -30,7 +32,15 @@ Tesseract : https://github.com/UB-Mannheim/tesseract/wiki
 Linux : 
 sudo apt-get update
 sudo apt-get install -y python3-tk
-sudo python3 pip install nltk
+sudo pip install nltk
 
 Windows (in powershell):
 pip install nltk
+
+----
+# CSV2BarG requires you to install pandas matplotlib and seaborn
+Linux: 
+sudo pip install pandas matplotlib seaborn
+
+Windows:
+pip install pandas matplotlib seaborn
