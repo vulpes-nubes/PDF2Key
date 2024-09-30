@@ -69,7 +69,7 @@ def save_word_counts_to_csv(word_counts, output_path):
 
 def filter_keywords(word_counts, exclude_words):
     stop_words = set(stopwords.words('english'))
-    additional_stopwords = {'cf', 'sig', 'vol', 'dictionary', 'translation', 'english', 'etc'}
+    additional_stopwords = {'cf', 'sig', 'vol', 'dictionary', 'translation', 'english', 'etc', 'eng', 'oxford', 'cambridge', 'meaning', 'etymology', 'one', 'two', 'three', 'transitive', 'intransitive', 'figurative', 'also', 'phrase', 'middle', 'old', 'new', 'dialect', 'regional', 'letter', 'form'}
     stop_words.update(additional_stopwords)
     stop_words.update(exclude_words)
     keywords = {word: count for word, count in word_counts.items() if word not in stop_words and not is_latin_number(word)}
