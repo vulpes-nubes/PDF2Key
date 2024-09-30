@@ -61,12 +61,12 @@ def export_to_csv(word_count, text_file_path):
     output_file = f"{base_name}_word_frequencies.csv"
     
     with open(output_file, 'w', newline='') as csvfile:
-        fieldnames = ['keyword', 'count']
+        fieldnames = ['Keyword', 'Count']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         
         writer.writeheader()
         for word, count in word_count.items():
-            writer.writerow({'keyword': word, 'count': count})
+            writer.writerow({'Keyword': word, 'Count': count})
     
     messagebox.showinfo("Success", f"Word frequencies have been saved to {output_file}")
 
