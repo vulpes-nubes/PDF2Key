@@ -122,7 +122,7 @@ def main():
     
     # Create output CSV file paths
     word_counts_output_path = os.path.splitext(txt_output_path)[0] + "_word_counts.csv"
-    keywords_output_path = os.path.splitext(txt_output_path)[0] + "_keywords.csv"
+    keywords_output_path = os.path.splitext(txt_output_path)[0] + ".csv"
     
     # Save word counts to CSV
     save_word_counts_to_csv(word_counts, word_counts_output_path)
