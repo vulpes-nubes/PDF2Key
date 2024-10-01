@@ -82,25 +82,31 @@ def save_keywords_to_csv(keywords, output_path):
         for keyword, count in sorted_keywords:
             writer.writerow([keyword, count])
 
-def process_pdf_file(pdf_path):
+def process_pdf_file(pdf_path, output_directory):
     # Convert PDF to text
     text = convert_pdf_to_text(pdf_path)
     
     # Create output text file path
-    txt_output_path = os.path.splitext(pdf_path)[0] + ".txt"
+    base_name = os.path.basename(pdf_path)
+    file_name_without_extension = os.path.splitext(base_name)[0]
     
+    # Create subdirectories if they don't exist
+    txt_dir = os.path.join(output_directory, 'txt')
+    word_counts_dir = os.path.join(output_directory, 'word_counts')
+    keywords_dir = os.path.join(output_directory, 'keywords')
+    os.makedirs(txt_dir, exist_ok=True)
+    os.makedirs(word_counts_dir, exist_ok=True)
+    os.makedirs(keywords_dir, exist_ok=True)
+
     # Save text to file
+    txt_output_path = os.path.join(txt_dir, f"{file_name_without_extension}.txt")
     save_text_to_file(text, txt_output_path)
-    
     print(f"Text successfully extracted to {txt_output_path}")
     
     # Read text from file
     with open(txt_output_path, 'r', encoding='utf-8') as text_file:
         text = text_file.read()
     
-    # Extract the base name and remove the .pdf extension
-    base_name = os.path.basename(pdf_path)
-    file_name_without_extension = os.path.splitext(base_name)[0]
     exclude_word = file_name_without_extension.split()[0].lower()
     exclude_words = {exclude_word}
 
@@ -111,8 +117,8 @@ def process_pdf_file(pdf_path):
     word_counts = count_words(lemmatized_words)
     
     # Create output CSV file paths
-    word_counts_output_path = os.path.splitext(txt_output_path)[0] + "_word_counts.csv"
-    keywords_output_path = os.path.splitext(txt_output_path)[0] + ".csv"
+    word_counts_output_path = os.path.join(word_counts_dir, f"{file_name_without_extension}_word_counts.csv")
+    keywords_output_path = os.path.join(keywords_dir, f"{file_name_without_extension}.csv")
     
     # Save word counts to CSV
     save_word_counts_to_csv(word_counts, word_counts_output_path)
@@ -126,7 +132,8 @@ def process_pdf_file(pdf_path):
 
 def main():
     # Define the directory containing the PDF files
-    directory_path = 'path_to_your_directory'  # Set the directory path here
+    directory_path = '/path/to/files'  # Set the directory path here
+    output_directory = '/path/to/files/output'  # Set the output directory here
 
     # List all PDF files in the directory
     files = [f for f in os.listdir(directory_path) if f.endswith('.pdf')]
@@ -135,7 +142,7 @@ def main():
     for file_name in files:
         file_path = os.path.join(directory_path, file_name)
         print(f"Processing file: {file_name}")
-        process_pdf_file(file_path)
+        process_pdf_file(file_path, output_directory)
 
 if __name__ == "__main__":
     main()

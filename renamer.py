@@ -1,27 +1,25 @@
 import os
 
 def clean_filename(filename):
-    # Remove commas from the filename
-    cleaned_filename = filename.replace(',', '')
+    # Split the filename at the first comma and take the part before it
+    if ',' in filename:
+        cleaned_filename = filename.split(',', 1)[0]  # Keep everything before the first comma
+    else:
+        cleaned_filename = filename  # If no comma, keep the whole filename
     
-    # Split by spaces and preserve the first part (could be hyphenated)
-    first_part = cleaned_filename.split()[0]
-    
-    # Remove any extra extensions that might exist (e.g., .csv.csv)
-    first_part = first_part.rstrip('.pdf')
-    
-    return first_part
+    # Return the cleaned filename
+    return cleaned_filename
 
 # Set the path to your directory
-directory = '/home/gray221/Documents/batch'
+directory = '/path/to/pdfs'
 
 # Loop over all the files in the directory
 for filename in os.listdir(directory):
     if filename.endswith('.pdf'):
-        # Clean the filename (remove commas and keep hyphenated words)
+        # Clean the filename (remove everything after the first comma)
         new_filename = clean_filename(filename)
         
-        # Ensure the new filename has a single .csv extension
+        # Ensure the new filename has the .pdf extension
         new_filename = f"{new_filename}.pdf"
         
         # Get the full path for the old and new filenames
@@ -33,3 +31,4 @@ for filename in os.listdir(directory):
         print(f"Renamed: {filename} -> {new_filename}")
 
 print("Renaming completed!")
+
