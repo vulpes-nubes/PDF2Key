@@ -67,8 +67,8 @@ def process_csv_files(word_list, csv_folder):
 
 # Example usage
 if __name__ == "__main__":
-    word_list_file = '/home/gray221/Documents/batch/output/stoplist.txt'  # Replace with your actual word list file path
-    csv_directory = '/home/gray221/Documents/batch/output/keywords'  # Replace with your actual CSV directory path
+    word_list_file = '/path/to/.txt'  # Replace with your actual word list file path
+    csv_directory = '/path/to/files dir'  # Replace with your actual CSV directory path
 
     # Load the word list
     words = load_word_list(word_list_file)
