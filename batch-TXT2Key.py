@@ -111,8 +111,8 @@ def process_file(txt_path, output_directory):
 
 def main():
     # Define the directory containing the TXT files
-    directory_path = '/path/here'  # Set the directory path here
-    output_directory = '/path/to/dir'  # Set the output directory here
+    directory_path = '/path to txts'  # Set the directory path here
+    output_directory = '/path to outpud DIR'  # Set the output directory here
 
     # List all TXT files in the directory
     files = [f for f in os.listdir(directory_path) if f.endswith('.txt')]

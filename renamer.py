@@ -11,7 +11,7 @@ def clean_filename(filename):
     return cleaned_filename
 
 # Set the path to your directory
-directory = '/path/to/CSV'
+directory = '/path to CSVs'
 
 # Loop over all the files in the directory
 for filename in os.listdir(directory):
