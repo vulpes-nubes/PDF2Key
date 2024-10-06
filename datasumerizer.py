@@ -16,6 +16,9 @@ summary_df = pd.DataFrame({'Word': words})
 # Set 'Word' as the index for easier merging later
 summary_df.set_index('Word', inplace=True)
 
+# List to keep track of successfully processed file names
+processed_files = []
+
 # Loop over each CSV file in the 'KeyCounted' directory
 for csv_file in os.listdir(keycounted_directory):
     if csv_file.endswith('.csv'):
@@ -28,6 +31,7 @@ for csv_file in os.listdir(keycounted_directory):
         if 'Word' in df.columns and 'Count' in df.columns:
             # Extract the filename without the extension for the column name
             file_name = os.path.splitext(csv_file)[0]
+            processed_files.append(file_name)
             
             # Create a temporary DataFrame with 'Word' as index and 'Count' as the column
             temp_df = df[['Word', 'Count']].set_index('Word')
@@ -42,6 +46,21 @@ for csv_file in os.listdir(keycounted_directory):
 
 # Replace NaN values with 0 (indicating that a word wasn't present in a particular file)
 summary_df.fillna(0, inplace=True)
+
+# Verification step: Check that there is exactly one column for each CSV file
+expected_columns = set(os.path.splitext(f)[0] for f in os.listdir(keycounted_directory) if f.endswith('.csv'))
+actual_columns = set(summary_df.columns)
+
+if expected_columns == actual_columns:
+    print(f"Verification successful! All {len(expected_columns)} files have been processed correctly.")
+else:
+    missing_files = expected_columns - actual_columns
+    extra_columns = actual_columns - expected_columns
+    print(f"Verification failed! Issues detected:")
+    if missing_files:
+        print(f"Missing columns for files: {missing_files}")
+    if extra_columns:
+        print(f"Extra columns found: {extra_columns}")
 
 # Reset the index to make 'Word' a column again
 summary_df.reset_index(inplace=True)
