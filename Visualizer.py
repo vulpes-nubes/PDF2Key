@@ -28,8 +28,11 @@ def correlation_heatmap(data):
 
 # 2. Bar Plot for High-Frequency Words (Static & Interactive)
 def bar_plot_high_freq_words(data, n=20):
+    # Ensure we are only summing numeric columns
+    numeric_data = data.select_dtypes(include='number')
+
     # Summing the feature columns and getting the top N words/actions
-    top_words = data.sum(axis=0).sort_values(ascending=False).head(n)
+    top_words = numeric_data.sum(axis=0).sort_values(ascending=False).head(n)
 
     # Static Plot
     plt.figure(figsize=(10, 6))
@@ -45,6 +48,7 @@ def bar_plot_high_freq_words(data, n=20):
     fig = px.bar(top_words, x=top_words.index, y=top_words.values, title=f"Top {n} Most Frequent Words/Actions (Interactive)", labels={'x':'Words/Actions', 'y':'Frequency'})
     fig.write_html("bar_plot_interactive.html")
     fig.show()
+
 
 # 3. Box Plot for Distribution of Selected Features (Static & Interactive)
 def box_plot_distribution(data, selected_features):

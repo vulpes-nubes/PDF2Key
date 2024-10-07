@@ -4,7 +4,7 @@ from bokeh.models import ColumnDataSource, HoverTool
 import numpy as np
 
 # Load the CSV file (update the file path as needed)
-file_path = 'path/to/your/summary_output.csv'  # Replace with your file path
+file_path = 'summary_output.csv'  # Replace with your file path
 df = pd.read_csv(file_path)
 
 # Calculate the total sum of counts for each word across all columns
@@ -27,10 +27,10 @@ source = ColumnDataSource(data=dict(
 
 # Create a Bokeh figure
 p = figure(title="Word Frequency Visualization", tools="pan,wheel_zoom,reset", 
-           plot_width=800, plot_height=800)
+           width=800, height=800)
 
 # Add circles (points) for each word
-p.circle('x', 'y', size='size', source=source, fill_alpha=0.6, line_color=None)
+p.scatter('x', 'y', size='size', source=source, fill_alpha=0.6, line_color=None)
 
 # Add hover tool to display word and total count
 hover = HoverTool(tooltips=[("Word", "@word"), ("Total Count", "@total_count")])
